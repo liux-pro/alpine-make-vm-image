@@ -1,6 +1,5 @@
 name: CI
 on:
-  - pull_request
   - push
 
 jobs:
@@ -23,3 +22,7 @@ jobs:
               --packages "$(cat example/packages)" \
               --script-chroot \
               alpine-virthardened-$(date +%Y-%m-%d).qcow2 -- ./example/configure.sh
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v2.2.4
+        with:
+          path: ./*.qcow2
